@@ -14,11 +14,15 @@ const instance = axios.create({
 instance.interceptors.request.use(
   config => {
     if (localStorage.getItem("token")) {
-      if (config.method === "get") {
-        config.params.token = localStorage.getItem("token");
-      } else if (config.method === "post") {
-        config.data.token = localStorage.getItem("token");
-      }
+      // 请求数据里面携带token
+      // if (config.method === "get") {
+      //   config.params.token = localStorage.getItem("token");
+      // } else if (config.method === "post") {
+      //   config.data.token = localStorage.getItem("token");
+      // }
+
+      // 在请求头里面携带token
+      config.headers.token = localStorage.getItem("token");
     }
     // 在发送请求之前做些什么
     return config;
@@ -47,7 +51,7 @@ const http = {
     return new Promise((resolve, reject) => {
       instance
         .get(url, {
-          params: params
+          params: params || {}
         })
         .then(res => {
           if (res.status === "0") {

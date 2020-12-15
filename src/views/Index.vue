@@ -62,48 +62,60 @@
 <script>
 import Swiper from "@/components/Swiper";
 
-import { getBannerListApi, getRecommendListApi } from "../utils/api";
-
 export default {
   data() {
     return {
-      swiperList: [],
-      recommendList: [],
       count: 4,
       page: 1,
-      value: "",
       loading: false,
-      finished: true
+      finished: true,
+      value: ""
     };
   },
   components: {
     Swiper
   },
   mounted() {
-    this.getBannerList();
-    this.getRecommendList();
-  },
-  methods: {
-    async getBannerList() {
-      const res = await getBannerListApi({ a: 1 });
-      this.swiperList = res.result.list;
-    },
-    async getRecommendList() {
-      const res = await getRecommendListApi({
+    this.$store.dispatch("getBannerList");
+    this.$store
+      .dispatch("getRecommendList", {
         count: this.count,
         page: this.page
+      })
+      .then(length => {
+        this.page++;
+        this.loading = false;
+        if (length < this.count) {
+          this.finished = true;
+        } else {
+          this.finished = false;
+        }
       });
-      this.recommendList = [...this.recommendList, ...res.result.list];
-      this.page++;
-      this.loading = false;
-      if (res.result.list.length < this.count) {
-        this.finished = true;
-      } else {
-        this.finished = false;
-      }
+  },
+  computed: {
+    swiperList() {
+      return this.$store.state.home.swiperList;
     },
+    recommendList() {
+      return this.$store.state.home.recommendList;
+    }
+  },
+  methods: {
     onLoad() {
-      this.getRecommendList()
+      this.$store
+        .dispatch("getRecommendList", {
+          count: this.count,
+          page: this.page
+        })
+        .then(length => {
+          this.page++;
+          this.loading = false;
+          if (length < this.count) {
+            this.finished = true;
+          } else {
+            this.finished = false;
+          }
+        });
     }
   }
 };

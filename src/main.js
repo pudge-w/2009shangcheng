@@ -14,7 +14,9 @@ import {
   Grid,
   GridItem,
   Card,
-  List
+  List,
+  Sidebar,
+  SidebarItem
 } from "vant";
 
 Vue.use(NavBar);
@@ -27,6 +29,8 @@ Vue.use(Grid);
 Vue.use(GridItem);
 Vue.use(Card);
 Vue.use(List);
+Vue.use(Sidebar);
+Vue.use(SidebarItem);
 
 // import Vant from "vant";
 // import "vant/lib/index.css";
