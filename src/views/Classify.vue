@@ -20,7 +20,11 @@
       </van-sidebar>
 
       <div class="classify-right">
-        <p v-for="item in classifyList" :key="item.productId">
+        <p
+          v-for="item in classifyList"
+          :key="item.productId"
+          @click="goToDetail(item.productId)"
+        >
           {{ item.title }}
         </p>
       </div>
@@ -87,6 +91,9 @@ export default {
     itemClick(index) {
       this.type = this.list[index].type;
       this.$store.dispatch("getClassifyList", { type: this.type });
+    },
+    goToDetail(id) {
+      this.$router.push("/detail/" + id);
     }
   }
 };

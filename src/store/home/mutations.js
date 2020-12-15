@@ -4,5 +4,8 @@ export default {
   },
   changeRecommendList(state, payload) {
     state.recommendList = payload;
+  },
+  clearRecommendList(state) {
+    state.recommendList = [];
   }
 };

@@ -53,6 +53,7 @@
           :title="item.productName"
           :thumb="item.imgUrl"
           :origin-price="item.originalPrice"
+          @click="goToDetail(item.productId)"
         />
       </van-list>
     </div>
@@ -116,7 +117,13 @@ export default {
             this.finished = false;
           }
         });
+    },
+    goToDetail(id) {
+      this.$router.push("/detail/" + id);
     }
+  },
+  beforeDestroy() {
+    this.$store.commit("clearRecommendList");
   }
 };
 </script>

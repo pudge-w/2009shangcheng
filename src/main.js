@@ -16,7 +16,14 @@ import {
   Card,
   List,
   Sidebar,
-  SidebarItem
+  SidebarItem,
+  Cell,
+  GoodsAction,
+  GoodsActionIcon,
+  GoodsActionButton,
+  Sku,
+  Field,
+  Button
 } from "vant";
 
 Vue.use(NavBar);
@@ -31,6 +38,13 @@ Vue.use(Card);
 Vue.use(List);
 Vue.use(Sidebar);
 Vue.use(SidebarItem);
+Vue.use(Cell);
+Vue.use(GoodsAction);
+Vue.use(GoodsActionIcon);
+Vue.use(GoodsActionButton);
+Vue.use(Sku);
+Vue.use(Field);
+Vue.use(Button);
 
 // import Vant from "vant";
 // import "vant/lib/index.css";
